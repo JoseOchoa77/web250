@@ -22,7 +22,22 @@ class Bird {
 
   /*
    * TODO 1 -- Properties
-   *
+   */
+    public $common_name;
+    public $scientific_name;
+    public $habitat;
+    public $food;
+    public $nest_placement;
+    public $behavior;
+    public $backyard_tips;
+    protected $wingspan_cm;
+    protected $weight_g;
+    protected $weight_oz;
+    protected $conservation_id;
+
+
+
+   /*
    * Open private/wnc-birds.csv and look at the header row. Every column needs
    * a matching property, and the property name must match the column name
    * exactly, because the constructor looks the values up by key.
@@ -52,7 +67,11 @@ class Bird {
    * why comment required: explain how this differs from the row_count()
    * method on ParseCSV. They often report the same number. Say when they
    * would not.
+   * 
+   * Answer: They wouldn't when 
    */
+
+  public static $birdCount = 0;
 
 
 
@@ -68,6 +87,25 @@ class Bird {
    * an HTML form would read them, which is the reason they are public.
    */
 
+    public const HABITATS = [
+    1 => 'Open woodlands',
+    2 => 'Forests',
+    3 => 'Scrub',
+    4 => 'High elevation',
+    5 => 'Fields',
+    6 => 'Wetland',
+    7 => 'Cliff'];
+
+
+    public const FOOD_TYPES = [
+    1 => 'Insects',
+    2 => 'Nectar',
+    3 => 'Seeds',
+    4 => 'Nuts',
+    5 => 'Fish',
+    6 => 'Small mammals',
+    7 => 'Birds',
+    8 => 'Omnivore'];
 
 
   /*
@@ -87,7 +125,7 @@ class Bird {
    * the words "Extreme concern"?
    */
 
-
+    private const CONDITIONS = [1 => 'Low concern', 2 => 'Moderate concern', 3 => 'Extreme concern', 4 => 'Extinct'];
 
   /*
    * TODO 5 -- The constructor
@@ -110,7 +148,21 @@ class Bird {
    * column? What happens if someone reorders the columns in the CSV?
    */
 
+       public function __construct($args = [])
+  {
+    $this->common_name = $args['common_name'] ?? '';
+    $this->scientific_name = $args['scientific_name'] ?? '';
+    $this->habitat = $args['habitat'] ?? '';
+    $this->food = $args['food'] ?? '';
+    $this->nest_placement = $args['nest_placement'] ?? '';
+    $this->behavior = $args['behavior'] ?? '';
+    $this->wingspan_cm = $args['wingspan_cm'] ?? 0;
+    $this->weight_g = $args['weight_g'] ?? 0;
+    $this->conservation_id = $args['conservation_id'] ?? 1;
+    $this->backyard_tips = $args['backyard_tips'] ?? '';
 
+    self::$birdCount++;
+  }
 
   /*
    * TODO 6 -- Getters and setters for wingspan
@@ -129,6 +181,21 @@ class Bird {
    * for inches writes to a property measured in centimeters.
    */
 
+    public function wingspan_cm(){
+      echo $this->wingspan_cm . " cm";
+    }
+
+    public function set_weight_cm($v) {
+     $this->weight_g = (float) $v / 0.035274;
+   }
+
+    public function wingspan_in() {
+      echo number_format($this->wingspan_cm / 2.54, 2) . "in";
+    }
+
+    public function set_wingspan_in($v) {
+     $this->wingspan_cm = (float) $v / 0.393701;
+   }
 
 
   /*
@@ -138,7 +205,22 @@ class Bird {
    * 1 g = 0.0352740 oz.
    */
 
+    public function weight_g(){
+      return $this->weight_g;
+    }
 
+    public function set_weight($v) {
+      $this->weight_g = $v;
+    }
+
+    public function weight_oz() {
+      return number_format($this->weight_g * 0.035274, 4);
+    }
+
+    public function set_weight_oz($v){
+      $v = $v * 0.035274;
+      return $v;
+    }
 
   /*
    * TODO 8 -- conservation()
@@ -155,6 +237,14 @@ class Bird {
    * why comment required: why self:: and not $this->?
    */
 
+    public function condition()
+  {
+    return self::CONDITIONS[$this->conservation_id] ?? 'Unknown';
+  }
+
+  public function conservation(){
+    return $this->conservation_id;
+  }
 
 
   /*
@@ -169,6 +259,15 @@ class Bird {
    * your comment and say why they suit this data.
    */
 
+    public function size_class() {
+      if ($this->wingspan_cm <= 35) {
+        return 'Small';
+      } elseif ($this->wingspan_cm <= 60) {
+        return 'Medium';
+      } else {
+        return 'Large';
+      }
+    }
 
 
   /*
@@ -189,6 +288,10 @@ class Bird {
    *
    * why comment required: state which approach you chose and why.
    */
+
+  public function display_name(){
+    return  h($this->common_name).' (<em>'. h($this->scientific_name).'<em/>)';
+  }
 
 
 
