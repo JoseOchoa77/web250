@@ -22,3 +22,5 @@ Desktop.ini
 # Archives
 # ------------------------------------------------------------
 *.zip
+
+/private/db_credentials.php
