@@ -1,7 +1,0 @@
-# Local/host database credentials - never commit
-private/db_credentials.php
-
-# System and log files
-.DS_Store
-Thumbs.db
-*.log
