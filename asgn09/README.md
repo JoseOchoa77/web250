@@ -65,5 +65,5 @@ To run locally, put the files into my htdocs file in xampp folder and then I ens
 
 your GitHub URL and hosted URL after deployment.
 
-GitHub URL: 
-Hosting URL:
+GitHub URL: https://github.com/JoseOchoa77/web250/tree/main/asgn09
+Hosting URL: http://web250.joseo27.sg-host.com/
