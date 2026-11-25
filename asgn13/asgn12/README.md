@@ -72,7 +72,7 @@ Replace the blank cells with Pass/Needs work and a short note. Record the actual
 
 1. Why do we need `require_admin()` when the Admin link is already hidden?
 
-   [Your explanation]
+   Because each page if a user isnt an admin and they type in the url an admin page. Without the function the user can use the admin features bypassing admin validation.
 
 2. What does `from_row()` return, and how does the member list use it?
 
