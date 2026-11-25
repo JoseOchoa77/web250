@@ -1,0 +1,6 @@
+# Apache 2.4: deny private configuration files and directory listings.
+# Your host must allow these directives; PHP's built-in server ignores .htaccess.
+Options -Indexes
+<FilesMatch "^(\.env(?:\..*)?|composer\.(json|lock)|README\.md)$">
+    Require all denied
+</FilesMatch>

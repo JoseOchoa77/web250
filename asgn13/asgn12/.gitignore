@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+vendor/
+**/db_credentials.php
+.DS_Store
+Thumbs.db
