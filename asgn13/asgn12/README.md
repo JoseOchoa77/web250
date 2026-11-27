@@ -76,14 +76,14 @@ Replace the blank cells with Pass/Needs work and a short note. Record the actual
 
 2. What does `from_row()` return, and how does the member list use it?
 
-   [Your explanation]
+   From_row() returns a new member object with declared variables from the array passed to it.
 
 3. Why does updating a member preserve their password?
 
-   [Your explanation]
+   Because we need to keep their password hash for this assignment.
 
 4. Why does Delete use a confirmation GET followed by a checked POST?
 
-   [Your explanation]
+   Because without the GET confirmation, the user would be deleted by clicking the delete link on the members.php page. The POST checks that the session token is valid upon request to ensure better security.
 
 Submit the two required links in Moodle. The two sandboxes are optional, ungraded, local practice and are not submitted.
