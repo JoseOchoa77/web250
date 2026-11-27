@@ -8,7 +8,7 @@ if (!is_int($id) || $id <= 0) {
 }
 // BEGIN T04
 // TODO T04: load this ID using the provided Member::find_by_id() method.
-$member = null;
+$member = Member::find_by_id($id);
 // END T04
 if ($member === null) {
     http_response_code(404);
